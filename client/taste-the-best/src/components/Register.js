@@ -2,30 +2,88 @@ import React, { useState } from "react";
 import registerimage from "../images/register.jpg";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Register() {
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
   const choose = () => {
-    if (email === "" || username === "" || password === "") {
-      console.log("empty fields");
+    if (email === "") {
+      toast.warn("Email cannot be empty", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else if (name === "") {
+      toast.warn("Username cannot be empty", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else if (password === "") {
+      toast.warn("Password cannot be empty", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       Axios.post("http://localhost:5000/register", {
         email,
-        username,
+        name,
         password,
       })
         .then((res) => {
-          console.log("registered");
+          toast.warn("Successfully registered", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          history.push("/choose");
         })
         .catch((err) => {
-          console.log("email already exist");
+          toast.warn("Already Registered from this Email", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         });
     }
   };
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="container pt-lg-5">
         <div className="row pt-lg-5">
           <div className="d-md-flex d-none col-lg-7 col-md-12 pt-lg-5">
@@ -51,7 +109,7 @@ function Register() {
               </div>
               <div class="form-group row pt-lg-4 pl-md-0 pl-3">
                 <label for="inputEmail3" class="col-form-label">
-                  Username
+                  Name
                 </label>
                 <div class="col">
                   <input
@@ -59,8 +117,8 @@ function Register() {
                     class="form-control"
                     id="inputusername"
                     required
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </div>
               </div>

@@ -14,7 +14,7 @@ router.post("/", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  db.query("SELECT * FROM register WHERE email = ?", email, (err, result) => {
+  db.query("SELECT * FROM user WHERE email = ?", email, (err, result) => {
     if (err) {
       console.log(err);
     }

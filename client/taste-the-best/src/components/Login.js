@@ -1,29 +1,79 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Axios from "axios";
 import loginimage from "../images/login.jpg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
 
   const login = () => {
-    if (email === "" || password === "") {
-      console.log("empty fields");
+    if (email === "") {
+      toast.warn("Enter your email", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else if (password === "") {
+      toast.warn("Enter your password", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       Axios.post("http://localhost:5000/login", { email, password })
         .then((res) => {
           if (res) {
-            console.log("logged in");
+            toast.warn("Successfully Logged in", {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            history.push("/home");
           }
         })
         .catch((err) => {
-          console.log("Invalid credentials");
+          toast.warn("Invalid Credentials", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         });
     }
   };
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="container pt-lg-5">
         <div className="row pt-lg-5">
           <div className="d-md-flex d-none col-lg-7 col-md-12 pt-lg-5">
@@ -47,7 +97,7 @@ function Login() {
                   />
                 </div>
               </div>
-              <div class="form-group row pt-lg-4 pl-md-0 pl-3">
+              <div class="form-group row pt-lg-5 pl-md-0 pl-3">
                 <label for="inputPassword3" class="col-form-label">
                   Password
                 </label>
@@ -64,10 +114,7 @@ function Login() {
               </div>
               <div class="form-group row pt-lg-3">
                 <div class="col d-flex justify-content-end">
-                  <a href="/register/step-1">
-                    {" "}
-                    Don't have an account?Register now
-                  </a>
+                  <a href="/register"> Don't have an account?Register now</a>
                 </div>
               </div>
               <div class="form-group row pt-lg-3">

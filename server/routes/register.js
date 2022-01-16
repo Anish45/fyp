@@ -12,14 +12,14 @@ const db = mysql.createConnection({
 
 router.post("/", async (req, res) => {
   const email = req.body.email;
-  const username = req.body.username;
+  const name = req.body.name;
   const password = await bcrypt.hash(req.body.password, 10);
   //const password = req.body.password;
 
-  if (email === "" || username === "" || password === "") {
+  if (email === "" || name === "" || password === "") {
     res.send("empty field");
   } else {
-    db.query("SELECT * FROM register WHERE email = ?", email, (err, result) => {
+    db.query("SELECT * FROM user WHERE email = ?", email, (err, result) => {
       if (err) {
         console.log(err);
       }
@@ -27,8 +27,8 @@ router.post("/", async (req, res) => {
         res.status(422).json({ message: "user already exist" });
       } else {
         db.query(
-          "INSERT INTO register(email, username, password) VALUES (?,?,?)",
-          [email, username, password],
+          "INSERT INTO user(email, name, password) VALUES (?,?,?)",
+          [email, name, password],
           (err, result) => {
             if (err) {
               console.log(err);

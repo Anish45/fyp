@@ -1,0 +1,9 @@
+.show-on-hover:hover > ul.dropdown-menu {
+  display: block;
+}
+
+.name {
+  /* font-family: "Josefin Sans", sans-serif; */
+  font-family: monospace;
+  color: white;
+}

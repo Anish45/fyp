@@ -1,0 +1,16 @@
+.nav-pills .nav-link.active {
+  color: #000000;
+  background-color: white;
+  font-weight: 900;
+}
+
+.nav-pills .nav-link {
+  color: rgb(105, 100, 100);
+  /* font-size: 22px; */
+  font-family: monospace;
+}
+
+.nav-pills .nav-link:hover {
+  background: rgba(15, 20, 25, 0.1);
+  border-radius: 20px;
+}

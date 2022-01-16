@@ -1,12 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function Choose() {
+function Choose(props) {
+  const [nepali, setNepali] = useState();
+  const [american, setAmerican] = useState();
+  const [spanish, setSpanish] = useState(false);
+  const [indian, setIndian] = useState(false);
+  const [italian, setItalian] = useState(false);
+  const [french, setFrench] = useState(false);
+
+  const history = useHistory();
+
+  const [cuisine, setCuisine] = useState([]);
+
+  const checkboxes = document.querySelectorAll(".custom-control-input");
+
+  for (const checkbox of checkboxes) {
+    if (checkbox.checked === true) {
+      if (!cuisine.includes(checkbox.value)) {
+        cuisine.push(checkbox.value);
+        console.log(cuisine);
+      }
+    } else if (checkbox.checked === false) {
+      if (cuisine.includes(checkbox.value)) {
+        cuisine.pop(checkbox.value);
+        console.log(cuisine);
+      }
+    }
+  }
+  const handleChoose = (e) => {
+    if (cuisine.length >= 3) {
+      console.log("success");
+      setCuisine(cuisine);
+      console.log(cuisine);
+      localStorage.setItem("cuisine", JSON.stringify(cuisine));
+      history.push("/home");
+    } else {
+      console.log("fail");
+      toast.warn("Choose at least 3 cuisines", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="container">
         <div className="row pt-5">
           <div className="col-12 d-flex justify-content-center">
-            <h3>Please Choose(at least 3)Cuisine you love</h3>
+            <h3>Choose Your favourite Cuisines</h3>
           </div>
         </div>
         <div className="row pt-3">
@@ -16,6 +76,8 @@ function Choose() {
                 type="checkbox"
                 class="custom-control-input"
                 id="customCheck1"
+                value="nepali"
+                onChange={(e) => setNepali(e.target.value)}
               />
               <label class="custom-control-label" for="customCheck1">
                 Nepali
@@ -30,6 +92,8 @@ function Choose() {
                 type="checkbox"
                 class="custom-control-input"
                 id="customCheck2"
+                value="american"
+                onChange={(e) => setAmerican(e.target.value)}
               />
               <label class="custom-control-label" for="customCheck2">
                 American
@@ -44,6 +108,8 @@ function Choose() {
                 type="checkbox"
                 class="custom-control-input"
                 id="customCheck3"
+                value="spanish"
+                onChange={(e) => setSpanish(e.target.value)}
               />
               <label class="custom-control-label" for="customCheck3">
                 Spanish
@@ -58,6 +124,8 @@ function Choose() {
                 type="checkbox"
                 class="custom-control-input"
                 id="customCheck4"
+                value="indian"
+                onChange={(e) => setIndian(e.target.value)}
               />
               <label class="custom-control-label" for="customCheck4">
                 Indian
@@ -72,6 +140,8 @@ function Choose() {
                 type="checkbox"
                 class="custom-control-input"
                 id="customCheck5"
+                value="italian"
+                onChange={(e) => setItalian(e.target.value)}
               />
               <label class="custom-control-label" for="customCheck5">
                 Italian
@@ -86,6 +156,8 @@ function Choose() {
                 type="checkbox"
                 class="custom-control-input"
                 id="customCheck6"
+                value="french"
+                onChange={(e) => setFrench(e.target.value)}
               />
               <label class="custom-control-label" for="customCheck6">
                 French
@@ -95,8 +167,12 @@ function Choose() {
         </div>
         <div className="row pt-5">
           <div className="col-12 d-flex justify-content-center">
-            <button type="button" class="btn btn-primary btn-lg">
-              Register
+            <button
+              type="button"
+              class="btn btn-primary btn-lg"
+              onClick={handleChoose}
+            >
+              Submit
             </button>
           </div>
         </div>
