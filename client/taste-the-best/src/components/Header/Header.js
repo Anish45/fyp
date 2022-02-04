@@ -37,14 +37,14 @@ function Header() {
               Search
             </button>
           </form>
-          <FaBell size={25} />
+          <FaBell size={25} color="white" />
           <div class="btn-group show-on-hover">
             <button
               type="button"
               class="btn btn-default dropdown-toggle"
               data-toggle="dropdown"
             >
-              <FaUserAlt size={25} /> <span class="caret"></span>
+              <FaUserAlt size={25} color="white" /> <span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-right pl-2" role="menu">
               <li>
@@ -62,7 +62,7 @@ function Header() {
               </li>
             </ul>
           </div>
-          <div className="pr-2">Langugage: </div>
+          <div className="pr-2 text-white">Langugage : </div>
           <select className="pl-1">
             <option value="english">English</option>
             <option value="french">French</option>

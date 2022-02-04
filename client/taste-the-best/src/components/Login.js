@@ -35,7 +35,7 @@ function Login() {
       Axios.post("http://localhost:5000/login", { email, password })
         .then((res) => {
           if (res) {
-            toast.warn("Successfully Logged in", {
+            toast.success("Successfully Logged in", {
               position: "top-right",
               autoClose: 2000,
               hideProgressBar: false,
@@ -45,6 +45,8 @@ function Login() {
               progress: undefined,
             });
             history.push("/home");
+            localStorage.setItem("loggedin", true);
+            localStorage.setItem("email", email);
           }
         })
         .catch((err) => {

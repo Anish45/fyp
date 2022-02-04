@@ -2,6 +2,10 @@ import React from "react";
 import "./style.css";
 import Foryou from "../For You/Foryou";
 import Addrecipe from "../Add Recipe/Addrecipe";
+import Shoppinglist from "../Shopping list/Shoppinglist";
+import Following from "../Following/Following";
+import Recent from "../Recently uploaded/Recent";
+import Highlyrated from "../Highly rated/Highlyrated";
 function Home() {
   return (
     <>
@@ -117,7 +121,7 @@ function Home() {
               role="tabpanel"
               aria-labelledby="v-pills-following-tab"
             >
-              Following
+              <Following />
             </div>
             <div
               class="tab-pane fade"
@@ -125,7 +129,7 @@ function Home() {
               role="tabpanel"
               aria-labelledby="v-pills-recent-tab"
             >
-              Recent
+              <Recent />
             </div>
             <div
               class="tab-pane fade"
@@ -133,7 +137,7 @@ function Home() {
               role="tabpanel"
               aria-labelledby="v-pills-highrated-tab"
             >
-              High Rated
+              <Highlyrated />
             </div>
             <div
               class="tab-pane fade"
@@ -141,7 +145,7 @@ function Home() {
               role="tabpanel"
               aria-labelledby="v-pills-shoppinglist-tab"
             >
-              Shopping List
+              <Shoppinglist />
             </div>
             <div
               class="tab-pane fade"
