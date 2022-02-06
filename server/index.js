@@ -9,7 +9,6 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
 app.use("/register", registerRoute);
 app.use("/login", loginRoute);
 app.use("/upload", uploadrecipeRoute);

@@ -1,6 +1,7 @@
 const mysql = require("mysql");
 const express = require("express");
 const bcrypt = require("bcrypt");
+const { use } = require("./login");
 const router = express.Router();
 
 const db = mysql.createConnection({
@@ -12,11 +13,11 @@ const db = mysql.createConnection({
 
 router.post("/", async (req, res) => {
   const email = req.body.email;
-  const name = req.body.name;
+  const username = req.body.username;
   const password = await bcrypt.hash(req.body.password, 10);
   //const password = req.body.password;
 
-  if (email === "" || name === "" || password === "") {
+  if (email === "" || username === "" || password === "") {
     res.send("empty field");
   } else {
     db.query("SELECT * FROM user WHERE email = ?", email, (err, result) => {
@@ -27,11 +28,11 @@ router.post("/", async (req, res) => {
         res.status(422).json({ message: "user already exist" });
       } else {
         db.query(
-          "INSERT INTO user(email, name, password) VALUES (?,?,?)",
-          [email, name, password],
+          "INSERT INTO user(email, username, password) VALUES (?,?,?)",
+          [email, username, password],
           (err, result) => {
             if (err) {
-              console.log(err);
+              res.status(401).send("username already taken");
             } else {
               res.send("successfully registered");
             }

@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function Register() {
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
   const choose = () => {
@@ -20,7 +20,7 @@ function Register() {
         draggable: true,
         progress: undefined,
       });
-    } else if (name === "") {
+    } else if (username === "") {
       toast.warn("Username cannot be empty", {
         position: "top-right",
         autoClose: 2000,
@@ -43,7 +43,7 @@ function Register() {
     } else {
       Axios.post("http://localhost:5000/register", {
         email,
-        name,
+        username,
         password,
       })
         .then((res) => {
@@ -57,17 +57,30 @@ function Register() {
             progress: undefined,
           });
           history.push("/choose");
+          localStorage.setItem("username", username);
         })
         .catch((err) => {
-          toast.warn("Already Registered from this Email", {
-            position: "top-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+          if (err.response.status === 401) {
+            toast.warn("Username already taken", {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          } else {
+            toast.warn("Already Registered from this Email", {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
         });
     }
   };
@@ -109,7 +122,7 @@ function Register() {
               </div>
               <div class="form-group row pt-lg-4 pl-md-0 pl-3">
                 <label for="inputEmail3" class="col-form-label">
-                  Name
+                  Username
                 </label>
                 <div class="col">
                   <input
@@ -117,8 +130,8 @@ function Register() {
                     class="form-control"
                     id="inputusername"
                     required
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                   />
                 </div>
               </div>

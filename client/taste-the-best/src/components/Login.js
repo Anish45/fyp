@@ -6,12 +6,12 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
 
   const login = () => {
-    if (email === "") {
+    if (username === "") {
       toast.warn("Enter your email", {
         position: "top-right",
         autoClose: 2000,
@@ -32,7 +32,7 @@ function Login() {
         progress: undefined,
       });
     } else {
-      Axios.post("http://localhost:5000/login", { email, password })
+      Axios.post("http://localhost:5000/login", { username, password })
         .then((res) => {
           if (res) {
             toast.success("Successfully Logged in", {
@@ -45,8 +45,7 @@ function Login() {
               progress: undefined,
             });
             history.push("/home");
-            localStorage.setItem("loggedin", true);
-            localStorage.setItem("email", email);
+            localStorage.setItem("username", username);
           }
         })
         .catch((err) => {
@@ -86,7 +85,7 @@ function Login() {
             <form>
               <div class="form-group row pt-lg-4 pl-md-0 pl-3">
                 <label for="inputEmail3" class="col-form-label">
-                  Email
+                  Username
                 </label>
                 <div class="col">
                   <input
@@ -94,8 +93,8 @@ function Login() {
                     class="form-control"
                     id="inputEmail3"
                     required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                   />
                 </div>
               </div>

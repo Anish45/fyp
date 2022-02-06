@@ -2,6 +2,7 @@ const mysql = require("mysql");
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const { response } = require("express");
 
 const db = mysql.createConnection({
   user: "root",
@@ -11,10 +12,10 @@ const db = mysql.createConnection({
 });
 
 router.post("/", (req, res) => {
-  const email = req.body.email;
+  const username = req.body.username;
   const password = req.body.password;
 
-  db.query("SELECT * FROM user WHERE email = ?", email, (err, result) => {
+  db.query("SELECT * FROM user WHERE username = ?", username, (err, result) => {
     if (err) {
       console.log(err);
     }

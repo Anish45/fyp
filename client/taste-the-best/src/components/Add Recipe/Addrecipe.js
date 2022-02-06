@@ -13,6 +13,7 @@ function Addrecipe() {
   const [cookingtime, setCookingtime] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [instructions, setInstructions] = useState("");
+  const uploadedby = localStorage.getItem("username");
 
   const upload = () => {
     if (name === "") {
@@ -107,6 +108,7 @@ function Addrecipe() {
             cookingtime: cookingtime,
             ingredients: ingredients,
             instructions: instructions,
+            uploadedby: uploadedby,
           }).then(() => {
             toast.success("Sucessfuly Uploaded", {
               position: "top-right",

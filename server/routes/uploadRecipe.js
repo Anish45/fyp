@@ -18,10 +18,11 @@ router.post("/", (req, res) => {
   const cookingtime = req.body.cookingtime;
   const ingredients = req.body.ingredients;
   const instructions = req.body.instructions;
-  const date = new Date().toLocaleString();
+  const date = new Date().toDateString();
+  const uploadedby = req.body.uploadedby;
 
   db.query(
-    "INSERT INTO recipes (name, description, category, image, preparationtime, cookingtime, ingredients, instructions, date) VALUES (?, ?, ?, ?, ?, ?, ? ,?, ?);",
+    "INSERT INTO recipes (name, description, category, image, preparationtime, cookingtime, ingredients, instructions, date, uploadedby) VALUES (?, ?, ?, ?, ?, ?, ? ,?, ?, ?);",
     [
       name,
       description,
@@ -32,6 +33,7 @@ router.post("/", (req, res) => {
       ingredients,
       instructions,
       date,
+      uploadedby,
     ],
     (err, results) => {
       res.send(results);
