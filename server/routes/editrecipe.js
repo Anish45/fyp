@@ -9,7 +9,18 @@ const db = mysql.createConnection({
   database: "fyp",
 });
 
-router.post("/", (req, res) => {
+router.get("/:recipeid", (req, res) => {
+  const recipeId = req.params.recipeid;
+  db.query("SELECT * FROM recipes WHERE id = ?;", recipeId, (err, results) => {
+    if (err) {
+      console.log(err);
+    }
+    res.send(results);
+  });
+});
+
+router.put("/:editRecipeId", (req, res) => {
+  const editRecipeId = req.params.editRecipeId;
   const name = req.body.name;
   const description = req.body.description;
   const category = req.body.category;
@@ -19,10 +30,9 @@ router.post("/", (req, res) => {
   const ingredients = req.body.ingredients;
   const instructions = req.body.instructions;
   const date = new Date().toDateString();
-  const uploadedby = req.body.uploadedby;
 
   db.query(
-    "INSERT INTO recipes (name, description, category, image, preparationtime, cookingtime, ingredients, instructions, date, uploadedby) VALUES (?, ?, ?, ?, ?, ?, ? ,?, ?, ?);",
+    "UPDATE recipes SET name = ?, description = ?, category = ?, image = ?, preparationtime = ?, cookingtime = ?, ingredients = ?, instructions = ?, date = ?  WHERE id  = ?;",
     [
       name,
       description,
@@ -33,21 +43,12 @@ router.post("/", (req, res) => {
       ingredients,
       instructions,
       date,
-      uploadedby,
+      editRecipeId,
     ],
     (err, results) => {
       res.send(results);
     }
   );
-});
-
-router.get("/", (req, res) => {
-  db.query("SELECT * FROM recipes", (err, results) => {
-    if (err) {
-      console.log(err);
-    }
-    res.send(results);
-  });
 });
 
 module.exports = router;

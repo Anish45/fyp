@@ -4,6 +4,10 @@ const cors = require("cors");
 const registerRoute = require("./routes/register");
 const loginRoute = require("./routes/login");
 const uploadrecipeRoute = require("./routes/uploadRecipe");
+const profile = require("./routes/profile");
+const userDetails = require("./routes/userDetails");
+const recipeDetails = require("./routes/recipedescription");
+const editRecipe = require("./routes/editrecipe");
 
 const app = express();
 
@@ -12,6 +16,10 @@ app.use(express.json());
 app.use("/register", registerRoute);
 app.use("/login", loginRoute);
 app.use("/upload", uploadrecipeRoute);
+app.use("/profile", profile);
+app.use("/userdetails", userDetails);
+app.use("/recipedescription", recipeDetails);
+app.use("/edit", editRecipe);
 
 app.listen(5000, () => {
   console.log("server running at port 5000");

@@ -48,17 +48,10 @@ function Header() {
             </button>
             <ul class="dropdown-menu dropdown-menu-right pl-2" role="menu">
               <li>
-                <a href="#">Action</a>
+                <a href="/profile">profile</a>
               </li>
               <li>
-                <a href="#">Another action</a>
-              </li>
-              <li>
-                <a href="#">Something else here</a>
-              </li>
-              <li class="divider"></li>
-              <li>
-                <a href="#">Separated link</a>
+                <a href="#">log out</a>
               </li>
             </ul>
           </div>

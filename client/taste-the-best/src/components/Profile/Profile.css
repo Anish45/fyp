@@ -1,0 +1,8 @@
+.card {
+  border: none;
+}
+
+.img-fluid {
+  border-radius: 20px;
+  height: 150px;
+}
