@@ -8,6 +8,7 @@ const profile = require("./routes/profile");
 const userDetails = require("./routes/userDetails");
 const recipeDetails = require("./routes/recipedescription");
 const editRecipe = require("./routes/editrecipe");
+const deleteRecipe = require("./routes/deleterecipe");
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use("/profile", profile);
 app.use("/userdetails", userDetails);
 app.use("/recipedescription", recipeDetails);
 app.use("/edit", editRecipe);
+app.use("/delete", deleteRecipe);
 
 app.listen(5000, () => {
   console.log("server running at port 5000");

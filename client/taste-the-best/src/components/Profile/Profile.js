@@ -48,7 +48,9 @@ function Profile() {
     history.push("/edit");
   };
 
-  const deleteRecipe = () => {};
+  const deleteRecipe = (id) => {
+    Axios.delete(`http://localhost:5000/delete/${id}`);
+  };
   return (
     <>
       <div className="container">
