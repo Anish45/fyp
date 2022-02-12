@@ -9,6 +9,9 @@ function Profile() {
   const [yourUploads, setYourUploads] = useState([]);
   const [details, setDetails] = useState([]);
   const [totalpost, setTotalpost] = useState(0);
+  const [profile, setProfile] = useState(
+    "istockphoto-1300845620-612x612_azen7e.jpg"
+  );
 
   useEffect(() => {
     Axios.get(
@@ -51,6 +54,27 @@ function Profile() {
   const deleteRecipe = (id) => {
     Axios.delete(`http://localhost:5000/delete/${id}`);
   };
+
+  const uploadPicture = () => {
+    const formData = new FormData();
+    formData.append("file", profile[0]);
+    formData.append("upload_preset", "uiarhyf8");
+    Axios.post(
+      `https://api.cloudinary.com/v1_1/dsxghrclx/image/upload`,
+      formData
+    ).then((res) => {
+      const fileName = res.data.public_id;
+
+      Axios.put(
+        `http://localhost:5000/editprofile/${localStorage.getItem("username")}`,
+        {
+          picture: fileName,
+        }
+      );
+    });
+    document.getElementById("picturename").value = null;
+  };
+
   return (
     <>
       <div className="container">
@@ -66,9 +90,19 @@ function Profile() {
                     publicId={val.picture}
                   />
                   <br></br>
-                  <button>Upload picture</button>
+                  <br></br>
+                  <input
+                    id="picturename"
+                    type="file"
+                    onChange={(e) => setProfile(e.target.files)}
+                  />
+                  <br></br>
+                  <br></br>
+                  <button className="btn btn-primary" onClick={uploadPicture}>
+                    upload picture
+                  </button>
                 </div>
-                <div class="col-lg-8 pt-5">
+                <div class="col-lg-8 pt-3">
                   <p className="d-flex justify-content-start">
                     Username: {val.username}
                   </p>
