@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 import Foryou from "../For You/Foryou";
 import Addrecipe from "../Add Recipe/Addrecipe";
@@ -7,6 +7,7 @@ import Following from "../Following/Following";
 import Recent from "../Recently uploaded/Recent";
 import Highlyrated from "../Highly rated/Highlyrated";
 function Home() {
+  const [search, setSearch] = useState("");
   return (
     <>
       <div className="row">
@@ -17,6 +18,8 @@ function Home() {
               type="search"
               placeholder="Search Recipe..."
               aria-label="Search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
               Search
@@ -113,7 +116,7 @@ function Home() {
               role="tabpanel"
               aria-labelledby="v-pills-home-tab"
             >
-              <Foryou />
+              <Foryou search={search} />
             </div>
             <div
               class="tab-pane fade"
