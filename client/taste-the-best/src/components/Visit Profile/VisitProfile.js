@@ -10,8 +10,31 @@ function VisitProfile() {
   const [details, setDetails] = useState([]);
   const [following, setFollowing] = useState(true);
   const [totalpost, setTotalpost] = useState(0);
+  const [followers, setFollowers] = useState(0);
+  const [followingother, setFollowingother] = useState(0);
 
   useEffect(() => {
+    Axios.post("http://localhost:5000/checkfollow", {
+      followedby: localStorage.getItem("username"),
+      following: localStorage.getItem("visitorname"),
+    }).then((res) => {
+      if (res.status === 200) {
+        setFollowing(false);
+      }
+    });
+
+    Axios.get(
+      `http://localhost:5000/checkfollow/${localStorage.getItem("visitorname")}`
+    ).then((response) => {
+      setFollowers(response.data[0].countfollower);
+    });
+
+    Axios.get(
+      `http://localhost:5000/follow/${localStorage.getItem("visitorname")}`
+    ).then((response) => {
+      setFollowingother(response.data[0].countfollowing);
+    });
+
     Axios.get(
       `http://localhost:5000/profile/${localStorage.getItem("visitorname")}`
     ).then((response) => {
@@ -31,11 +54,20 @@ function VisitProfile() {
     history.push("/recipedescription");
   };
 
-  const follow = () => {
+  const follow = (followinguser) => {
+    Axios.post("http://localhost:5000/follow", {
+      followedby: localStorage.getItem("username"),
+      following: followinguser,
+    });
     setFollowing(false);
   };
 
-  const unfollow = () => {
+  const unfollow = (unfollowing) => {
+    Axios.delete(
+      `http://localhost:5000/follow/${localStorage.getItem(
+        "username"
+      )}/${unfollowing}`
+    );
     setFollowing(true);
   };
 
@@ -55,7 +87,7 @@ function VisitProfile() {
                       publicId={val.picture}
                     />
                   </div>
-                  <div class="col-lg-4 pt-3">
+                  <div class="col-lg-4">
                     <p className="d-flex justify-content-start">
                       Username: {val.username}
                     </p>
@@ -65,17 +97,24 @@ function VisitProfile() {
                     <p className="d-flex justify-content-start">
                       Total posts: {totalpost}
                     </p>
+                    <p className="d-flex justify-content-start">
+                      Followers: {followers} Following: {followingother}
+                    </p>
                   </div>
                   <div className="col-lg-3 pt-3">
                     {following ? (
-                      <a id="follow" class="btn btn-primary" onClick={follow}>
+                      <a
+                        id="follow"
+                        class="btn btn-primary"
+                        onClick={() => follow(val.username)}
+                      >
                         Follow
                       </a>
                     ) : (
                       <a
                         id="unfollow"
                         class="btn btn-primary"
-                        onClick={unfollow}
+                        onClick={() => unfollow(val.username)}
                       >
                         UnFollow
                       </a>
@@ -93,7 +132,7 @@ function VisitProfile() {
                       publicId={val.picture}
                     />
                   </div>
-                  <div class="col-lg-4 pt-3">
+                  <div class="col-lg-4">
                     <p className="d-flex justify-content-start">
                       Username: {val.username}
                     </p>
@@ -101,7 +140,10 @@ function VisitProfile() {
                       Email: {val.email}
                     </p>
                     <p className="d-flex justify-content-start">
-                      Total posts: 2
+                      Total posts: {totalpost}
+                    </p>
+                    <p className="d-flex justify-content-start">
+                      Followers: {followers} Following: {followingother}
                     </p>
                   </div>
                 </>

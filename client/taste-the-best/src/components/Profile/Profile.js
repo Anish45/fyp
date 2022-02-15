@@ -12,24 +12,35 @@ function Profile() {
   const [profile, setProfile] = useState(
     "istockphoto-1300845620-612x612_azen7e.jpg"
   );
+  const [followers, setFollowers] = useState(0);
+  const [followingother, setFollowingother] = useState(0);
 
   useEffect(() => {
     Axios.get(
+      `http://localhost:5000/checkfollow/${localStorage.getItem("username")}`
+    ).then((response) => {
+      setFollowers(response.data[0].countfollower);
+    });
+
+    Axios.get(
+      `http://localhost:5000/follow/${localStorage.getItem("username")}`
+    ).then((response) => {
+      setFollowingother(response.data[0].countfollowing);
+    });
+
+    Axios.get(
       `http://localhost:5000/profile/${localStorage.getItem("username")}`
-    ).then(
-      (response) => {
-        setYourUploads(response.data);
-        setTotalpost(response.data.length);
-      },
-      [yourUploads]
-    );
+    ).then((response) => {
+      setYourUploads(response.data);
+      setTotalpost(response.data.length);
+    });
 
     Axios.get(
       `http://localhost:5000/userdetails/${localStorage.getItem("username")}`
     ).then((response) => {
       setDetails(response.data);
     });
-  }, [details]);
+  }, [details, yourUploads]);
 
   const fullRecipe = (id) => {
     localStorage.setItem("recipeid", id);
@@ -102,7 +113,7 @@ function Profile() {
                     upload picture
                   </button>
                 </div>
-                <div class="col-lg-8 pt-3">
+                <div class="col-lg-8">
                   <p className="d-flex justify-content-start">
                     Username: {val.username}
                   </p>
@@ -111,6 +122,9 @@ function Profile() {
                   </p>
                   <p className="d-flex justify-content-start">
                     Total posts: {totalpost}
+                  </p>
+                  <p className="d-flex justify-content-start">
+                    Followers: {followers} Following: {followingother}
                   </p>
                 </div>
               </>
