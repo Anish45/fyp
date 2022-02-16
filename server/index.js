@@ -13,6 +13,7 @@ const editProfile = require("./routes/editprofile");
 const follow = require("./routes/follow");
 const checkFollow = require("./routes/checkfollow");
 const bodyParser = require("body-parser");
+const shoppingList = require("./routes/shoppinglist");
 
 const app = express();
 
@@ -37,6 +38,7 @@ app.use("/delete", deleteRecipe);
 app.use("/editprofile", editProfile);
 app.use("/follow", follow);
 app.use("/checkfollow", checkFollow);
+app.use("/addshoppinglist", shoppingList);
 
 app.listen(5000, () => {
   console.log("server running at port 5000");
