@@ -124,7 +124,7 @@ function Home() {
               role="tabpanel"
               aria-labelledby="v-pills-following-tab"
             >
-              <Following />
+              <Following search={search} />
             </div>
             <div
               class="tab-pane fade"
@@ -132,7 +132,7 @@ function Home() {
               role="tabpanel"
               aria-labelledby="v-pills-recent-tab"
             >
-              <Recent />
+              <Recent search={search} />
             </div>
             <div
               class="tab-pane fade"

@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Header/header.css";
 import { FaBell, FaUserAlt } from "react-icons/fa";
+import { useHistory } from "react-router-dom";
 
 function Header() {
+  const [user, setUser] = useState();
+  const history = useHistory();
+  const visitProfile = () => {
+    localStorage.setItem("visitorname", user);
+    history.push("/visitprofile");
+  };
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -32,8 +39,13 @@ function Header() {
               type="search"
               placeholder="Search User..."
               aria-label="Search"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
             />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            <button
+              class="btn btn-outline-success my-2 my-sm-0"
+              onClick={visitProfile}
+            >
               Search
             </button>
           </form>
@@ -51,7 +63,7 @@ function Header() {
                 <a href="/profile">profile</a>
               </li>
               <li>
-                <a href="#">log out</a>
+                <a href="/">log out</a>
               </li>
             </ul>
           </div>
