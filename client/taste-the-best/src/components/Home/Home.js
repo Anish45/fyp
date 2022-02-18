@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import Foryou from "../For You/Foryou";
 import Addrecipe from "../Add Recipe/Addrecipe";
@@ -8,6 +8,7 @@ import Recent from "../Recently uploaded/Recent";
 import Highlyrated from "../Highly rated/Highlyrated";
 function Home() {
   const [search, setSearch] = useState("");
+
   return (
     <>
       <div className="row">

@@ -1,9 +1,38 @@
 import React, { useEffect, useState } from "react";
 import "../Shopping list/shoppinglist.css";
 import Axios from "axios";
+import TextField from "@mui/material/TextField";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DatePicker from "@mui/lab/DatePicker";
+
 function Shoppinglist() {
   const [input, setInput] = useState();
   const [shoppinglist, setShoppinglist] = useState([]);
+  const [value, setValue] = useState();
+
+  useEffect(() => {
+    Axios.get(
+      `http://localhost:5000/notification/${localStorage.getItem("username")}`
+    ).then((res) => {
+      try {
+        setValue(res.data[0].remainderdate);
+        if (res.data[0].remainderdate === new Date().toDateString()) {
+          const message = "You have ingredients to buy from your shopping list";
+          localStorage.setItem("notification", 1);
+          localStorage.setItem("notificationmessage", message);
+        } else if (res.data[0].remainderdate != new Date().toDateString()) {
+          localStorage.removeItem("notification");
+          localStorage.setItem("notificationmessage", "No any notifications");
+        }
+      } catch (e) {
+        setValue(null);
+        localStorage.removeItem("notification");
+        localStorage.setItem("notificationmessage", "No any notifications");
+        console.log(e);
+      }
+    });
+  });
 
   useEffect(() => {
     Axios.get(
@@ -36,21 +65,51 @@ function Shoppinglist() {
     );
   };
 
+  const sendnotification = (date) => {
+    setValue(date.toDateString());
+    Axios.put(
+      `http://localhost:5000/notification/${date.toDateString()}/${localStorage.getItem(
+        "username"
+      )}`
+    );
+  };
+
   return (
     <>
-      <h3>Your Shopping List</h3>
+      <div className="row">
+        <div className="col-lg-7 col-12 d-lg-flex justify-content-end">
+          <h3>Your Shopping List</h3>
+        </div>
+        <div className="col-lg-5 col-12 d-lg-flex justify-content-end">
+          {/* <button className="btn btn-primary" onClick={sendnotification}>
+            Send Notification
+          </button> */}
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              label="Choose a date to remind"
+              value={value}
+              onChange={(newValue) => {
+                sendnotification(newValue);
+              }}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+        </div>
+      </div>
       <div className="row pt-3">
         <div className="col-12">
           <div class="input-group mb-3">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              type="text"
               class="form-control form-control-lg"
-              placeholder="Enter a Ingredients Name..."
+              placeholder="Enter Ingredients Name..."
             />
             <div class="input-group-append">
-              <button class="btn btn-outline-success" onClick={addIngredients}>
+              <button
+                class="btn btn-sm btn-outline-success"
+                onClick={addIngredients}
+              >
                 Add to Shopping List
               </button>
             </div>
@@ -60,7 +119,7 @@ function Shoppinglist() {
 
       <div className="row">
         <div className="col-12 d-flex justify-content-end">
-          <button class="btn btn-outline-success" onClick={removeall}>
+          <button class="btn btn-sm btn-outline-success" onClick={removeall}>
             Remove All
           </button>
         </div>

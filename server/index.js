@@ -16,6 +16,7 @@ const bodyParser = require("body-parser");
 const shoppingList = require("./routes/shoppinglist");
 const followingFeed = require("./routes/followingfeed");
 const recentlyuploadedFeed = require("./routes/recentlyuploaded");
+const notification = require("./routes/notification");
 
 const app = express();
 
@@ -43,6 +44,7 @@ app.use("/checkfollow", checkFollow);
 app.use("/addshoppinglist", shoppingList);
 app.use("/followingfeed", followingFeed);
 app.use("/recentlyuploadedfeed", recentlyuploadedFeed);
+app.use("/notification", notification);
 
 app.listen(5000, () => {
   console.log("server running at port 5000");

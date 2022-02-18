@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Header/header.css";
 import { FaBell, FaUserAlt } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
+import Badge from "@mui/material/Badge";
 
-function Header() {
+const Header = () => {
+  const [notification, setNotification] = useState(
+    localStorage.getItem("notification")
+  );
+  const [notificationmessage, setNotificationmessage] = useState(
+    localStorage.getItem("notificationmessage")
+  );
   const [user, setUser] = useState();
   const history = useHistory();
   const visitProfile = () => {
     localStorage.setItem("visitorname", user);
     history.push("/visitprofile");
   };
+
+  // localStorage.setItem("visitorname", user);
+  // history.push("/visitprofile");
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -25,7 +35,6 @@ function Header() {
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active"></li>
@@ -33,7 +42,7 @@ function Header() {
             <li class="nav-item dropdown"></li>
             <li class="nav-item"></li>
           </ul>
-          <form class="form-inline my-2 my-lg-0 mr-lg-2">
+          <form class="form-inline my-2 my-lg-0 mr-lg-2 pr-lg-2">
             <input
               class="form-control mr-sm-2"
               type="search"
@@ -49,7 +58,21 @@ function Header() {
               Search
             </button>
           </form>
-          <FaBell size={25} color="white" />
+          <div class="btn-group show-on-hover pr-lg-2">
+            {/* <FaBell size={25} color="white" /> */}
+            <Badge
+              badgeContent={notification}
+              color="primary"
+              style={{ cursor: "pointer" }}
+            >
+              <FaBell size={25} color="white" />
+            </Badge>
+
+            <ul class="dropdown-menu dropdown-menu-right pl-2" role="menu">
+              <span className="pt-3">{notificationmessage}</span>
+            </ul>
+          </div>
+          {/* <FaBell size={25} color="white" /> */}
           <div class="btn-group show-on-hover">
             <button
               type="button"
@@ -74,10 +97,10 @@ function Header() {
             <option value="spanish">Spanish</option>
             <option value="italian">Italian</option>
           </select>
-        </div>
+        </div>{" "}
       </nav>
     </>
   );
-}
+};
 
 export default Header;
