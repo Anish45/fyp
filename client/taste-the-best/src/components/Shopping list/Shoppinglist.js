@@ -16,12 +16,13 @@ function Shoppinglist() {
     Axios.get(
       `http://localhost:5000/notification/${localStorage.getItem("username")}`
     ).then((res) => {
-      setValue(res.data[0].remainderdate);
       try {
         if (res.data[0].remainderdate != date) {
+          setValue(res.data[0].remainderdate);
           localStorage.removeItem("notification");
           localStorage.setItem("notificationmessage", "No any notifications");
         } else {
+          setValue(res.data[0].remainderdate);
           const message = "You have ingredients to buy from your shopping list";
           localStorage.setItem("notification", 1);
           localStorage.setItem("notificationmessage", message);

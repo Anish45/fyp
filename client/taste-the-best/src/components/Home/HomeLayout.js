@@ -5,7 +5,6 @@ import Axios from "axios";
 function HomeLayout() {
   var retrievedData = localStorage.getItem("cuisine");
   var cuisineData = JSON.parse(retrievedData);
-  const [reload, setReload] = useState(true);
 
   return (
     <>
