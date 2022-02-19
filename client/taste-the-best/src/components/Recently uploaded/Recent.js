@@ -13,7 +13,6 @@ function Recent({ search }) {
   useEffect(() => {
     Axios.get(`http://localhost:5000/recentlyuploadedfeed`).then((response) => {
       setFeed(response.data);
-      console.log(response.data);
     });
   }, []);
 

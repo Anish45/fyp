@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "../Shopping list/shoppinglist.css";
 import Axios from "axios";
 import TextField from "@mui/material/TextField";
@@ -12,18 +12,19 @@ function Shoppinglist() {
   const [value, setValue] = useState();
 
   useEffect(() => {
+    var date = new Date().toDateString();
     Axios.get(
       `http://localhost:5000/notification/${localStorage.getItem("username")}`
     ).then((res) => {
+      setValue(res.data[0].remainderdate);
       try {
-        setValue(res.data[0].remainderdate);
-        if (res.data[0].remainderdate === new Date().toDateString()) {
+        if (res.data[0].remainderdate != date) {
+          localStorage.removeItem("notification");
+          localStorage.setItem("notificationmessage", "No any notifications");
+        } else {
           const message = "You have ingredients to buy from your shopping list";
           localStorage.setItem("notification", 1);
           localStorage.setItem("notificationmessage", message);
-        } else if (res.data[0].remainderdate != new Date().toDateString()) {
-          localStorage.removeItem("notification");
-          localStorage.setItem("notificationmessage", "No any notifications");
         }
       } catch (e) {
         setValue(null);
@@ -92,6 +93,7 @@ function Shoppinglist() {
                 sendnotification(newValue);
               }}
               renderInput={(params) => <TextField {...params} />}
+              minDate={new Date()}
             />
           </LocalizationProvider>
         </div>

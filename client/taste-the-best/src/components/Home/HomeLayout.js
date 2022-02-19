@@ -1,21 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import Home from "./Home";
-import { io } from "socket.io-client";
+import Axios from "axios";
 function HomeLayout() {
   var retrievedData = localStorage.getItem("cuisine");
   var cuisineData = JSON.parse(retrievedData);
-  //const [socket, setSocket] = useState(null);
-
-  // useEffect(() => {
-  //   setSocket(io("http://localhost:5001"));
-  // }, []);
-
-  // useEffect(() => {
-  //   socket?.on("Notification", (msg) => {
-  //     console.log(msg);
-  //   });
-  // });
+  const [reload, setReload] = useState(true);
 
   return (
     <>
