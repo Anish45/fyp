@@ -8,11 +8,13 @@ import { fontStyle } from "@mui/system";
 import "../For You/Foryou.css";
 import Profile from "../Profile/Profile";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function Foryou({ search }) {
   const history = useHistory();
   const [recipes, setRecipes] = useState([]);
   const [value, setValue] = useState([]);
+  const { t } = useTranslation(["common"]);
 
   useEffect(() => {
     Axios.get("http://localhost:5000/upload").then((response) => {
@@ -69,7 +71,7 @@ function Foryou({ search }) {
                         </Box>
                         <p class="card-text">
                           <small class="text-muted">
-                            Uploaded by:{" "}
+                            {t("uploadedby")}:{" "}
                             <a
                               className="uploadername"
                               onClick={() => visitProfile(val.uploadedby)}
@@ -83,7 +85,7 @@ function Foryou({ search }) {
                           class="btn btn-primary"
                           onClick={() => fullRecipe(val.id)}
                         >
-                          See full description
+                          {t("seefulldescription")}
                         </a>
                       </div>
                     </div>

@@ -3,6 +3,7 @@ import Axios from "axios";
 import "../Profile/Profile.css";
 import { Image } from "cloudinary-react";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function Profile() {
   const history = useHistory();
@@ -14,6 +15,7 @@ function Profile() {
   );
   const [followers, setFollowers] = useState(0);
   const [followingother, setFollowingother] = useState(0);
+  const { t } = useTranslation(["common"]);
 
   useEffect(() => {
     Axios.get(
@@ -89,7 +91,7 @@ function Profile() {
   return (
     <>
       <div className="container">
-        <h1>Profile</h1>
+        <h1>{t("profile")}</h1>
         <div class="row pt-3">
           {details.map((val, key) => {
             return (
@@ -110,21 +112,22 @@ function Profile() {
                   <br></br>
                   <br></br>
                   <button className="btn btn-primary" onClick={uploadPicture}>
-                    upload picture
+                    {t("uploadpicture")}
                   </button>
                 </div>
                 <div class="col-lg-8">
                   <p className="d-flex justify-content-start">
-                    Username: {val.username}
+                    {t("username")}: {val.username}
                   </p>
                   <p className="d-flex justify-content-start">
-                    Email: {val.email}
+                    {t("email")}: {val.email}
                   </p>
                   <p className="d-flex justify-content-start">
-                    Total posts: {totalpost}
+                    {t("totalposts")}: {totalpost}
                   </p>
                   <p className="d-flex justify-content-start">
-                    Followers: {followers} Following: {followingother}
+                    {t("followers")}: {followers} {t("following")}:{" "}
+                    {followingother}
                   </p>
                 </div>
               </>
@@ -133,7 +136,7 @@ function Profile() {
         </div>
         <div className="row pt-3">
           <div className="col-12 d-flex justify-content-center">
-            <h3>Your Uploads</h3>
+            <h3>{t("youruploads")}</h3>
           </div>
         </div>
         <div className="row pt-3">
@@ -152,7 +155,7 @@ function Profile() {
                           class="btn btn-primary"
                           onClick={() => fullRecipe(val.id)}
                         >
-                          See full description
+                          {t("seefulldescription")}
                         </a>
                         <br />
                         <br />
@@ -160,7 +163,7 @@ function Profile() {
                           class="btn btn-primary"
                           onClick={() => editRecipe(val)}
                         >
-                          Edit Recipe
+                          {t("editrecipe")}
                         </a>
                         <br />
                         <br />
@@ -168,7 +171,7 @@ function Profile() {
                           class="btn btn-primary"
                           onClick={() => deleteRecipe(val.id)}
                         >
-                          Delete Recipe
+                          {t("deleterecipe")}
                         </a>
                       </div>
                     </div>

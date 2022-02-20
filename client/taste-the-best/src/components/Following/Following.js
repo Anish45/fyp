@@ -4,11 +4,13 @@ import Rating from "@mui/material/Rating";
 import Axios from "axios";
 import { Image } from "cloudinary-react";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function Following({ search }) {
   const history = useHistory();
   const [value, setValue] = React.useState(0);
   const [feed, setFeed] = useState([]);
+  const { t } = useTranslation(["common"]);
 
   useEffect(() => {
     Axios.get(
@@ -68,7 +70,7 @@ function Following({ search }) {
                         </Box>
                         <p class="card-text">
                           <small class="text-muted">
-                            Uploaded by:{" "}
+                            {t("uploadedby")}:{" "}
                             <a
                               className="uploadername"
                               onClick={() => visitProfile(val.uploadedby)}
@@ -82,7 +84,7 @@ function Following({ search }) {
                           class="btn btn-primary"
                           onClick={() => fullRecipe(val.id)}
                         >
-                          See full description
+                          {t("seefulldescription")}
                         </a>
                       </div>
                     </div>

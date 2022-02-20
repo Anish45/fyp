@@ -10,7 +10,7 @@ import i18next from "i18next";
 const Header = () => {
   const { i18n, t } = useTranslation(["common"]);
   useEffect(() => {
-    if (localStorage.getItem("i18nextLng")?.length > 2) {
+    if (localStorage.getItem("i18nextLng")?.length > 3) {
       i18next.changeLanguage("en");
     }
   }, []);

@@ -5,11 +5,14 @@ import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
+import { useTranslation } from "react-i18next";
 
 function Shoppinglist() {
   const [input, setInput] = useState();
   const [shoppinglist, setShoppinglist] = useState([]);
   const [value, setValue] = useState();
+
+  const { t } = useTranslation(["common"]);
 
   useEffect(() => {
     var date = new Date().toDateString();
@@ -80,15 +83,12 @@ function Shoppinglist() {
     <>
       <div className="row">
         <div className="col-lg-7 col-12 d-lg-flex justify-content-end">
-          <h3>Your Shopping List</h3>
+          <h3>{t("yourshoppinglist")}</h3>
         </div>
         <div className="col-lg-5 col-12 d-lg-flex justify-content-end">
-          {/* <button className="btn btn-primary" onClick={sendnotification}>
-            Send Notification
-          </button> */}
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
-              label="Choose a date to remind"
+              label={t("choosedatetoremind")}
               value={value}
               onChange={(newValue) => {
                 sendnotification(newValue);
@@ -106,14 +106,14 @@ function Shoppinglist() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               class="form-control form-control-lg"
-              placeholder="Enter Ingredients Name..."
+              placeholder={t("enteringredientname")}
             />
             <div class="input-group-append">
               <button
                 class="btn btn-sm btn-outline-success"
                 onClick={addIngredients}
               >
-                Add to Shopping List
+                {t("addtoshoppinglist")}
               </button>
             </div>
           </div>
@@ -123,7 +123,7 @@ function Shoppinglist() {
       <div className="row">
         <div className="col-12 d-flex justify-content-end">
           <button class="btn btn-sm btn-outline-success" onClick={removeall}>
-            Remove All
+            {t("removeall")}
           </button>
         </div>
       </div>

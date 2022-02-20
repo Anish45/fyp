@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import Axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
 
 function Addrecipe() {
   const ref = useRef();
@@ -14,6 +15,7 @@ function Addrecipe() {
   const [ingredients, setIngredients] = useState("");
   const [instructions, setInstructions] = useState("");
   const uploadedby = localStorage.getItem("username");
+  const { t } = useTranslation(["common"]);
 
   const upload = () => {
     if (name === "") {
@@ -149,7 +151,7 @@ function Addrecipe() {
       <div className="container">
         <form>
           <div className="row">
-            <label>Name of the Recipe</label>
+            <label>{t("nameoftherecipe")}</label>
             <input
               className="form-control"
               value={name}
@@ -158,7 +160,7 @@ function Addrecipe() {
             />
           </div>
           <div className="row pt-3">
-            <label>Description</label>
+            <label>{t("description")}</label>
             <textarea
               className="form-control"
               rows={3}
@@ -168,7 +170,7 @@ function Addrecipe() {
           </div>
           <div className="row pt-5">
             <div className="col-3">
-              <label>Recipe Category:</label>
+              <label>{t("recipecategory")}:</label>
             </div>
             <div className="col-4">
               <select
@@ -188,7 +190,7 @@ function Addrecipe() {
           </div>
           <div className="row pt-5">
             <div className="col-3">
-              <label>Upload Image:</label>
+              <label>{t("uploadimage")}:</label>
             </div>
             <div className="col-4">
               <input
@@ -202,7 +204,7 @@ function Addrecipe() {
           </div>
           <div className="row pt-5">
             <div className="col-6">
-              <label>Preparation Time</label>
+              <label>{t("preparationtime")}</label>
               <input
                 className="form-control"
                 value={preparationtime}
@@ -211,7 +213,7 @@ function Addrecipe() {
               />
             </div>
             <div className="col-6">
-              <label>Cooking Time</label>
+              <label>{t("cookingtime")}</label>
               <input
                 className="form-control"
                 value={cookingtime}
@@ -221,7 +223,7 @@ function Addrecipe() {
             </div>
           </div>
           <div className="row pt-3">
-            <label>Ingredients</label>
+            <label>{t("ingredients")}</label>
             <textarea
               className="form-control"
               rows={3}
@@ -231,7 +233,7 @@ function Addrecipe() {
             />
           </div>
           <div className="row pt-3">
-            <label>Instructions</label>
+            <label>{t("instructions")}</label>
             <textarea
               className="form-control"
               rows={3}
@@ -242,7 +244,7 @@ function Addrecipe() {
           </div>
           <div className="row pt-5 pb-5">
             <button type="button" class="btn btn-primary" onClick={upload}>
-              submit
+              {t("submit")}
             </button>
           </div>
         </form>

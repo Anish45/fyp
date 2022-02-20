@@ -3,6 +3,7 @@ import Axios from "axios";
 import "../Visit Profile/visitProfile.css";
 import { Image } from "cloudinary-react";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function VisitProfile() {
   const history = useHistory();
@@ -12,6 +13,7 @@ function VisitProfile() {
   const [totalpost, setTotalpost] = useState(0);
   const [followers, setFollowers] = useState(0);
   const [followingother, setFollowingother] = useState(0);
+  const { t } = useTranslation(["common"]);
 
   useEffect(() => {
     Axios.post("http://localhost:5000/checkfollow", {
@@ -74,7 +76,7 @@ function VisitProfile() {
   return (
     <>
       <div className="container">
-        <h1>Profile</h1>
+        <h1>{t("profile")}</h1>
         <div class="row pt-3">
           {details.map((val, key) => {
             if (val.username != localStorage.getItem("username")) {
@@ -89,16 +91,17 @@ function VisitProfile() {
                   </div>
                   <div class="col-lg-4">
                     <p className="d-flex justify-content-start">
-                      Username: {val.username}
+                      {t("username")}: {val.username}
                     </p>
                     <p className="d-flex justify-content-start">
-                      Email: {val.email}
+                      {t("email")}: {val.email}
                     </p>
                     <p className="d-flex justify-content-start">
-                      Total posts: {totalpost}
+                      {t("totalposts")}: {totalpost}
                     </p>
                     <p className="d-flex justify-content-start">
-                      Followers: {followers} Following: {followingother}
+                      {t("followers")}: {followers} {t("following")}:{" "}
+                      {followingother}
                     </p>
                   </div>
                   <div className="col-lg-3 pt-3">
@@ -108,7 +111,7 @@ function VisitProfile() {
                         class="btn btn-primary"
                         onClick={() => follow(val.username)}
                       >
-                        Follow
+                        {t("follow")}
                       </a>
                     ) : (
                       <a
@@ -116,7 +119,7 @@ function VisitProfile() {
                         class="btn btn-primary"
                         onClick={() => unfollow(val.username)}
                       >
-                        UnFollow
+                        {t("unfollow")}
                       </a>
                     )}
                   </div>
@@ -134,16 +137,17 @@ function VisitProfile() {
                   </div>
                   <div class="col-lg-4">
                     <p className="d-flex justify-content-start">
-                      Username: {val.username}
+                      {t("username")}: {val.username}
                     </p>
                     <p className="d-flex justify-content-start">
-                      Email: {val.email}
+                      {t("email")}: {val.email}
                     </p>
                     <p className="d-flex justify-content-start">
-                      Total posts: {totalpost}
+                      {t("totalposts")}: {totalpost}
                     </p>
                     <p className="d-flex justify-content-start">
-                      Followers: {followers} Following: {followingother}
+                      {t("followers")}: {followers} {t("following")}:{" "}
+                      {followingother}
                     </p>
                   </div>
                 </>
@@ -153,7 +157,7 @@ function VisitProfile() {
         </div>
         <div className="row pt-3">
           <div className="col-12 d-flex justify-content-center">
-            <h3>Uploads</h3>
+            <h3>{t("uploads")}</h3>
           </div>
         </div>
         <div className="row pt-3">
@@ -172,7 +176,7 @@ function VisitProfile() {
                           class="btn btn-primary"
                           onClick={() => fullRecipe(val.id)}
                         >
-                          See full description
+                          {t("seefulldescription")}
                         </a>
                       </div>
                     </div>

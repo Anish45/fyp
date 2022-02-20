@@ -7,7 +7,7 @@ import Following from "../Following/Following";
 import Recent from "../Recently uploaded/Recent";
 import Highlyrated from "../Highly rated/Highlyrated";
 import { useTranslation } from "react-i18next";
-import i18next from "i18next";
+
 function Home() {
   const [search, setSearch] = useState("");
 
@@ -21,13 +21,13 @@ function Home() {
             <input
               class="form-control mr-sm-2"
               type="search"
-              placeholder="Search Recipe..."
+              placeholder={t("searchrecipe")}
               aria-label="Search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-              Search
+              {t("Search")}
             </button>
           </form>
         </div>
@@ -49,7 +49,7 @@ function Home() {
               aria-controls="v-pills-home"
               aria-selected="true"
             >
-              💇‍♂️ For You
+              💇‍♂️ {t("foryou")}
             </a>
             <span className="pt-lg-3"></span>
             <a
@@ -61,7 +61,7 @@ function Home() {
               aria-controls="v-pills-following"
               aria-selected="false"
             >
-              🧑‍🤝‍🧑 Following
+              🧑‍🤝‍🧑 {t("following")}
             </a>
             <span className="pt-lg-3"></span>
             <a
@@ -73,7 +73,7 @@ function Home() {
               aria-controls="v-pills-recent"
               aria-selected="false"
             >
-              ⏲️ Recently Uploaded
+              ⏲️ {t("recentlyuploaded")}
             </a>
             <span className="pt-lg-3"></span>
             <a
@@ -85,7 +85,7 @@ function Home() {
               aria-controls="v-pills-highrated"
               aria-selected="false"
             >
-              ⭐ Highly Rated
+              ⭐ {t("highlyrated")}
             </a>
             <span className="pt-lg-3"></span>
             <a
@@ -97,7 +97,7 @@ function Home() {
               aria-controls="v-pills-shoppinglist"
               aria-selected="false"
             >
-              🛒 Shopping List
+              🛒 {t("shoppinglist")}
             </a>
             <span className="pt-lg-3"></span>
             <a
@@ -109,7 +109,7 @@ function Home() {
               aria-controls="v-pills-addyourrecipe"
               aria-selected="false"
             >
-              ➕ Add Your Recipe
+              ➕ {t("addyourrecipe")}
             </a>
           </div>
         </div>
