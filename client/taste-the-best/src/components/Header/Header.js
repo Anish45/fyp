@@ -3,14 +3,39 @@ import "../Header/header.css";
 import { FaBell, FaUserAlt } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import Badge from "@mui/material/Badge";
+import Axios from "axios";
 
 const Header = () => {
-  const [notification, setNotification] = useState(
-    localStorage.getItem("notification")
-  );
-  const [notificationmessage, setNotificationmessage] = useState(
-    localStorage.getItem("notificationmessage")
-  );
+  useState(() => {
+    var date = new Date().toDateString();
+    Axios.get(
+      `http://localhost:5000/notification/${localStorage.getItem("username")}`
+    ).then((res) => {
+      try {
+        if (res.data[0].remainderdate != date) {
+          localStorage.removeItem("notification");
+          localStorage.setItem("notificationmessage", "No any notifications");
+          setNotification(localStorage.getItem("notification"));
+          setNotificationmessage(localStorage.getItem("notificationmessage"));
+        } else {
+          const message = "You have ingredients to buy from your shopping list";
+          localStorage.setItem("notification", 1);
+          localStorage.setItem("notificationmessage", message);
+          setNotification(localStorage.getItem("notification"));
+          setNotificationmessage(localStorage.getItem("notificationmessage"));
+        }
+      } catch (e) {
+        localStorage.removeItem("notification");
+        localStorage.setItem("notificationmessage", "No any notifications");
+        console.log(e);
+        setNotification(localStorage.getItem("notification"));
+        setNotificationmessage(localStorage.getItem("notificationmessage"));
+      }
+    });
+  });
+
+  const [notification, setNotification] = useState();
+  const [notificationmessage, setNotificationmessage] = useState();
   const [user, setUser] = useState();
   const history = useHistory();
   const visitProfile = () => {
