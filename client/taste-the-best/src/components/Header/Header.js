@@ -4,9 +4,22 @@ import { FaBell, FaUserAlt } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import Badge from "@mui/material/Badge";
 import Axios from "axios";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const Header = () => {
-  useState(() => {
+  const { i18n, t } = useTranslation(["common"]);
+  useEffect(() => {
+    if (localStorage.getItem("i18nextLng")?.length > 2) {
+      i18next.changeLanguage("en");
+    }
+  }, []);
+
+  const handleLanguageChange = (e) => {
+    i18n.changeLanguage(e.target.value);
+  };
+
+  useEffect(() => {
     var date = new Date().toDateString();
     Axios.get(
       `http://localhost:5000/notification/${localStorage.getItem("username")}`
@@ -48,7 +61,7 @@ const Header = () => {
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <h1 className="name">Taste The Best</h1>
+        <h1 className="name">{t("Tastethebest")}</h1>
         <button
           class="navbar-toggler"
           type="button"
@@ -71,7 +84,7 @@ const Header = () => {
             <input
               class="form-control mr-sm-2"
               type="search"
-              placeholder="Search User..."
+              placeholder={t("SearchUser")}
               aria-label="Search"
               value={user}
               onChange={(e) => setUser(e.target.value)}
@@ -80,7 +93,7 @@ const Header = () => {
               class="btn btn-outline-success my-2 my-sm-0"
               onClick={visitProfile}
             >
-              Search
+              {t("Search")}
             </button>
           </form>
           <div class="btn-group show-on-hover pr-lg-2">
@@ -108,19 +121,23 @@ const Header = () => {
             </button>
             <ul class="dropdown-menu dropdown-menu-right pl-2" role="menu">
               <li>
-                <a href="/profile">profile</a>
+                <a href="/profile">{t("profile")}</a>
               </li>
               <li>
-                <a href="/">log out</a>
+                <a href="/">{t("logout")}</a>
               </li>
             </ul>
           </div>
-          <div className="pr-2 text-white">Langugage : </div>
-          <select className="pl-1">
-            <option value="english">English</option>
-            <option value="french">French</option>
-            <option value="spanish">Spanish</option>
-            <option value="italian">Italian</option>
+          <div className="pr-2 text-white">{t("Language")} : </div>
+          <select
+            className="pl-1"
+            value={localStorage.getItem("i18nextLng")}
+            onChange={handleLanguageChange}
+          >
+            <option value="en">English</option>
+            <option value="fr">French</option>
+            <option value="es">Spanish</option>
+            <option value="ita">Italian</option>
           </select>
         </div>{" "}
       </nav>

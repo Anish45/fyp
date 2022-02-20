@@ -6,8 +6,12 @@ import Shoppinglist from "../Shopping list/Shoppinglist";
 import Following from "../Following/Following";
 import Recent from "../Recently uploaded/Recent";
 import Highlyrated from "../Highly rated/Highlyrated";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 function Home() {
   const [search, setSearch] = useState("");
+
+  const { t } = useTranslation(["common"]);
 
   return (
     <>
