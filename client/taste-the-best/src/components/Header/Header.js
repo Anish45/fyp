@@ -97,7 +97,6 @@ const Header = () => {
             </button>
           </form>
           <div class="btn-group show-on-hover pr-lg-2">
-            {/* <FaBell size={25} color="white" /> */}
             <Badge
               badgeContent={notification}
               color="primary"
@@ -110,7 +109,7 @@ const Header = () => {
               <span className="pt-3">{notificationmessage}</span>
             </ul>
           </div>
-          {/* <FaBell size={25} color="white" /> */}
+
           <div class="btn-group show-on-hover">
             <button
               type="button"
