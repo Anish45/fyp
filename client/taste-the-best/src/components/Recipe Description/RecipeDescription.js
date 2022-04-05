@@ -27,10 +27,11 @@ function RecipeDescription() {
       }catch{}
     })
 
-  });
+  }, []);
 
 
   const Rate = (value) => {
+    setRating(value);
     Axios.post("http://localhost:5000/rate",
     {ratedby: localStorage.getItem("username"), 
       rating: value,

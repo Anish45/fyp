@@ -79,7 +79,7 @@ function VisitProfile() {
         <h1>{t("profile")}</h1>
         <div class="row pt-3">
           {details.map((val, key) => {
-            if (val.username != localStorage.getItem("username")) {
+            if (val.username !== localStorage.getItem("username")) {
               return (
                 <>
                   <div class="col-lg-2">
@@ -106,7 +106,7 @@ function VisitProfile() {
                   </div>
                   <div className="col-lg-3 pt-3">
                     {following ? (
-                      <a
+                      <a href="#"
                         id="follow"
                         class="btn btn-primary"
                         onClick={() => follow(val.username)}
@@ -171,7 +171,7 @@ function VisitProfile() {
                       <div class="card-body">
                         <h5 class="card-title">{val.name}</h5>
                         <p class="card-text">{val.description}</p>
-                        <h5>Rating</h5>
+                        <h5>Category: {val.category}</h5>
                         <a
                           class="btn btn-primary"
                           onClick={() => fullRecipe(val.id)}

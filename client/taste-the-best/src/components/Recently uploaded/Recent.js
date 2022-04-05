@@ -48,7 +48,7 @@ function Recent({ search }) {
 
   return (
     <>
-      {length != 0 ? (
+      {length !== 0 ? (
         <div className="row">
           {feed
             .filter((val) => {

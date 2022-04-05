@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Header from "../Header/Header";
 import Home from "./Home";
-import Axios from "axios";
+
 function HomeLayout() {
   var retrievedData = localStorage.getItem("cuisine");
   var cuisineData = JSON.parse(retrievedData);

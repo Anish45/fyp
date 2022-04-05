@@ -43,7 +43,7 @@ function Profile() {
     ).then((response) => {
       setDetails(response.data);
     });
-  }, [details, yourUploads]);
+  }, []);
 
   const fullRecipe = (id) => {
     localStorage.setItem("recipeid", id);
@@ -152,7 +152,7 @@ function Profile() {
                         <h5 class="card-title">{val.name}</h5>
                         <p class="card-text">{val.description}</p>
                         <h5>Rating</h5>
-                        <a
+                        <a href=""
                           class="btn btn-primary"
                           onClick={() => fullRecipe(val.id)}
                         >

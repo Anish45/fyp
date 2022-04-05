@@ -25,7 +25,7 @@ const Header = () => {
       `http://localhost:5000/notification/${localStorage.getItem("username")}`
     ).then((res) => {
       try {
-        if (res.data[0].remainderdate != date) {
+        if (res.data[0].remainderdate !== date) {
           localStorage.removeItem("notification");
           localStorage.setItem("notificationmessage", "No any notifications");
           setNotification(localStorage.getItem("notification"));

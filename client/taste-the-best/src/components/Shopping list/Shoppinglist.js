@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Shopping list/shoppinglist.css";
 import Axios from "axios";
 import TextField from "@mui/material/TextField";
@@ -20,7 +20,7 @@ function Shoppinglist() {
       `http://localhost:5000/notification/${localStorage.getItem("username")}`
     ).then((res) => {
       try {
-        if (res.data[0].remainderdate != date) {
+        if (res.data[0].remainderdate !== date) {
           setValue(res.data[0].remainderdate);
           localStorage.removeItem("notification");
           localStorage.setItem("notificationmessage", "No any notifications");
