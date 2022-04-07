@@ -76,7 +76,7 @@ function Choose(props) {
                 type="checkbox"
                 class="custom-control-input"
                 id="customCheck1"
-                value="nepali"
+                value="Nepali"
                 onChange={(e) => setNepali(e.target.value)}
               />
               <label class="custom-control-label" for="customCheck1">
@@ -92,7 +92,7 @@ function Choose(props) {
                 type="checkbox"
                 class="custom-control-input"
                 id="customCheck2"
-                value="american"
+                value="American"
                 onChange={(e) => setAmerican(e.target.value)}
               />
               <label class="custom-control-label" for="customCheck2">
@@ -108,7 +108,7 @@ function Choose(props) {
                 type="checkbox"
                 class="custom-control-input"
                 id="customCheck3"
-                value="spanish"
+                value="Spanish"
                 onChange={(e) => setSpanish(e.target.value)}
               />
               <label class="custom-control-label" for="customCheck3">
@@ -124,7 +124,7 @@ function Choose(props) {
                 type="checkbox"
                 class="custom-control-input"
                 id="customCheck4"
-                value="indian"
+                value="Indian"
                 onChange={(e) => setIndian(e.target.value)}
               />
               <label class="custom-control-label" for="customCheck4">
@@ -140,7 +140,7 @@ function Choose(props) {
                 type="checkbox"
                 class="custom-control-input"
                 id="customCheck5"
-                value="italian"
+                value="Italian"
                 onChange={(e) => setItalian(e.target.value)}
               />
               <label class="custom-control-label" for="customCheck5">
@@ -156,7 +156,7 @@ function Choose(props) {
                 type="checkbox"
                 class="custom-control-input"
                 id="customCheck6"
-                value="french"
+                value="French"
                 onChange={(e) => setFrench(e.target.value)}
               />
               <label class="custom-control-label" for="customCheck6">

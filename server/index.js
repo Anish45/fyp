@@ -18,6 +18,7 @@ const followingFeed = require("./routes/followingfeed");
 const recentlyuploadedFeed = require("./routes/recentlyuploaded");
 const notification = require("./routes/notification");
 const rate = require("./routes/rate");
+const recommendation = require("./routes/recommendation");
 
 const app = express();
 
@@ -47,6 +48,7 @@ app.use("/followingfeed", followingFeed);
 app.use("/recentlyuploadedfeed", recentlyuploadedFeed);
 app.use("/notification", notification);
 app.use("/rate", rate);
+app.use("/recommendation", recommendation);
 
 app.listen(5000, () => {
   console.log("server running at port 5000");

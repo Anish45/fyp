@@ -15,11 +15,17 @@ function Foryou({ search }) {
   const [recipes, setRecipes] = useState([]);
   const [value, setValue] = useState([]);
   const { t } = useTranslation(["common"]);
+  const [cuisine, setCuisine] = useState([]);
+  
+  
 
   useEffect(() => {
     Axios.get("http://localhost:5000/upload").then((response) => {
       setRecipes(response.data);
     });
+
+    setCuisine(localStorage.getItem("cuisine"));
+    
   }, [recipes]);
 
   const visitProfile = (uploadedby) => {
@@ -49,7 +55,8 @@ function Foryou({ search }) {
           .map((val) => {
             return (
               <>
-                <div className="col-lg-4 col-12 pb-5">
+            {cuisine.includes(val.category) ? 
+                 <div className="col-lg-4 col-12 pb-5">
                   <div class="card-deck">
                     <div class="card">
                       <Image cloudName="dsxghrclx" publicId={val.image} />
@@ -78,7 +85,7 @@ function Foryou({ search }) {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> : console.log('fail')}
               </>
             );
           })}
