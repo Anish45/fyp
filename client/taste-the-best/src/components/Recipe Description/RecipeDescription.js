@@ -37,6 +37,7 @@ function RecipeDescription() {
       rating: value,
       recipeid: localStorage.getItem("recipeid")
   })
+  localStorage.setItem("rated", true);
 }
 
 

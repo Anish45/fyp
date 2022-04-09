@@ -6,6 +6,7 @@ import Shoppinglist from "../Shopping list/Shoppinglist";
 import Following from "../Following/Following";
 import Recent from "../Recently uploaded/Recent";
 import Highlyrated from "../Highly rated/Highlyrated";
+import Recommend from "../Recommend";
 import { useTranslation } from "react-i18next";
 
 function Home() {
@@ -62,6 +63,17 @@ function Home() {
               aria-selected="false"
             >
               🧑‍🤝‍🧑 {t("following")}
+            </a>
+            <a
+              class="nav-link pt-lg-3"
+              id="v-pills-recommend-tab"
+              data-toggle="pill"
+              href="#v-pills-recommend"
+              role="tab"
+              aria-controls="v-pills-recommend"
+              aria-selected="false"
+            >
+              💥 {t("recommendedforyou")}
             </a>
             <span className="pt-lg-3"></span>
             <a
@@ -130,6 +142,14 @@ function Home() {
               aria-labelledby="v-pills-following-tab"
             >
               <Following search={search} />
+            </div>
+             <div
+              class="tab-pane fade"
+              id="v-pills-recommend"
+              role="tabpanel"
+              aria-labelledby="v-pills-recommend-tab"
+            >
+              <Recommend />
             </div>
             <div
               class="tab-pane fade"

@@ -40,5 +40,6 @@
   "editrecipe": "Modifica ricetta",
   "deleterecipe": "Elimina Ricetta",
   "recipedescription": "Descrizione ricetta",
-  "category": "Categoria"
+  "category": "Categoria",
+  "recommendedforyou": "Raccomandato per te"
 }
