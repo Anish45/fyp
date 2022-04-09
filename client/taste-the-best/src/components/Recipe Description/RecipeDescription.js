@@ -30,7 +30,7 @@ function RecipeDescription() {
   }, []);
 
 
-  const Rate = (value) => {
+  const Rate = (value, name) => {
     setRating(value);
     Axios.post("http://localhost:5000/rate",
     {ratedby: localStorage.getItem("username"), 
@@ -38,6 +38,8 @@ function RecipeDescription() {
       recipeid: localStorage.getItem("recipeid")
   })
   localStorage.setItem("rated", true);
+  localStorage.setItem("title", name);
+  localStorage.setItem("rating", value);
 }
 
 
@@ -67,7 +69,7 @@ function RecipeDescription() {
                             name="simple-controlled"
                             value={rating}
                             onChange={(event, newValue) => {
-                              Rate(newValue);
+                              Rate(newValue, val.name);
                             }}
                           />
                         </Box>

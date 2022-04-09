@@ -33,6 +33,6 @@ similar_movies = pd.DataFrame()
 for title,rating in user:
     similar_movies = similar_movies.append(get_similar(title, rating))
     similar_movies = similar_movies.drop(columns = title, axis=1) 
-print(similar_movies.sum().sort_values(ascending=False).head(10))
+print(similar_movies.sum().sort_values(ascending=False).head(10).to_json())
 
 
