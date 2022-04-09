@@ -20,7 +20,7 @@ function Following({ search }) {
       setFeed(response.data);
       setLength(response.data.length);
     });
-  }, []);
+  });
 
   const visitProfile = (uploadedby) => {
     localStorage.setItem("visitorname", uploadedby);

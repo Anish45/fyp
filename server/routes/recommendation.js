@@ -14,8 +14,10 @@ router.post("/", (req, res) => {
 
 })
 
-router.get("/", (req, res) => {
-    const childPython = spawn('python', ['C:/Users/Anish/Desktop/fyp/server/routes/recommendation.py', "Amazing Spider-Man, The (2012)", 1]);
+router.get("/:title/:rating", (req, res) => {
+    const title = req.params.title;
+    const rating = req.params.rating;
+    const childPython = spawn('python', ['C:/Users/Anish/Desktop/fyp/server/routes/recommendation.py', title, rating]);
 
 
 

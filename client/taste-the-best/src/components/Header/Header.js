@@ -40,7 +40,6 @@ const Header = () => {
       } catch (e) {
         localStorage.removeItem("notification");
         localStorage.setItem("notificationmessage", "No any notifications");
-        console.log(e);
         setNotification(localStorage.getItem("notification"));
         setNotificationmessage(localStorage.getItem("notificationmessage"));
       }
