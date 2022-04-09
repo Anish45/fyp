@@ -86,7 +86,7 @@ function Following({ search }) {
             })}
         </div>
       ) : (
-        <h1>No any posts Here</h1>
+        <h1>No any Posts Here</h1>
       )}
     </>
   );

@@ -102,7 +102,7 @@ function Recent({ search }) {
             })}
         </div>
       ) : (
-        <h1>No any Posts</h1>
+        <h1>No any Posts Here</h1>
       )}
     </>
   );

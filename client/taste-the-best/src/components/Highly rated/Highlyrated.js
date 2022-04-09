@@ -9,13 +9,15 @@ function Highlyrated() {
   const history = useHistory();
   const [recipes, setRecipes] = useState([]);
   const { t } = useTranslation(["common"]);
+  const [length, setLength]= useState();
   
 
   useEffect(() => {
     Axios.get(`http://localhost:5000/highlyrated/${localStorage.getItem("username")}`).then((res) => {
       setRecipes(res.data);
+      setLength(res.data.length);
     })
-  }, [])
+  })
 
 
   const visitProfile = (uploadedby) => {
@@ -30,12 +32,12 @@ function Highlyrated() {
   };
 
   return (
+    <>
+    {length != 0 ? ( 
     <div className="row">
       {recipes.map((val) => {
         return(
           <>
-         {val.rating > 3 ? 
-         
         <div className="col-lg-4 col-12 pb-5">
           <div class="card-deck">
           <div class="card">
@@ -65,11 +67,12 @@ function Highlyrated() {
                       </div>
           </div>
         </div>
-       : null}
+       
           </>
         )
       })}
-    </div>
+    </div>) : (<h1>No any Posts Here</h1>)}
+    </>
   );
 }
 

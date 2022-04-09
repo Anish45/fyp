@@ -12,7 +12,7 @@ const db = mysql.createConnection({
 router.get("/:username", (req, res) => {
   const username = req.params.username;
   db.query(
-    "select * from recipes INNER Join ratings on recipes.id = ratings.recipeid where ratedby = ?",
+    "select * from recipes INNER Join ratings on recipes.id = ratings.recipeid where ratedby = ? and rating > 3",
     username,
     (err, results) => {
       if (err) {
