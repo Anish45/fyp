@@ -73,19 +73,7 @@ function Recent({ search }) {
                           <div class="card-body">
                             <h5 class="card-title">{val.name}</h5>
                             <p class="card-text">{val.description}</p>
-                            <Box
-                              sx={{
-                                "& > legend": { mt: 2 },
-                              }}
-                            >
-                              <Rating
-                                name="simple-controlled"
-                                value={value}
-                                onChange={(event, newValue) => {
-                                  setValue(newValue);
-                                }}
-                              />
-                            </Box>
+                            <p class="card-text">{t("category")}: {val.category}</p>
                             <p class="card-text">
                               <small class="text-muted">
                                 {t("uploadedby")}:{" "}

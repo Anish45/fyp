@@ -85,7 +85,7 @@ function Foryou({ search }) {
                       </div>
                     </div>
                   </div>
-                </div> : console.log('fail')}
+                </div> : null}
               </>
             );
           })}

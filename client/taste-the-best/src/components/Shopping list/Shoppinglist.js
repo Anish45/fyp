@@ -37,7 +37,7 @@ function Shoppinglist() {
         console.log(e);
       }
     });
-  });
+  }, []);
 
   useEffect(() => {
     Axios.get(

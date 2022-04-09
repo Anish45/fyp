@@ -1,107 +1,75 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import Rating from "@mui/material/Rating";
+import React, { useEffect, useState } from "react";
+import {Image} from "cloudinary-react";
+import { useTranslation } from "react-i18next";
+import Axios from "axios";
+import { useHistory } from "react-router-dom";
+
 
 function Highlyrated() {
-  const [value, setValue] = React.useState(4);
+  const history = useHistory();
+  const [recipes, setRecipes] = useState([]);
+  const { t } = useTranslation(["common"]);
+  
+
+  useEffect(() => {
+    Axios.get(`http://localhost:5000/highlyrated/${localStorage.getItem("username")}`).then((res) => {
+      setRecipes(res.data);
+    })
+  }, [])
+
+
+  const visitProfile = (uploadedby) => {
+    localStorage.setItem("visitorname", uploadedby);
+    history.push("/visitprofile");
+  };
+
+
+  const fullRecipe = (id) => {
+    localStorage.setItem("recipeid", id);
+    history.push("/recipedescription");
+  };
+
   return (
-    <>
-      <div className="row">
-        <div className="col-12">
+    <div className="row">
+      {recipes.map((val) => {
+        return(
+          <>
+         {val.rating > 3 ? 
+         
+        <div className="col-lg-4 col-12 pb-5">
           <div class="card-deck">
-            <div class="card">
-              <img src="..." class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  This is a longer card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-                <Box
-                  sx={{
-                    "& > legend": { mt: 2 },
-                  }}
-                >
-                  <Rating
-                    name="simple-controlled"
-                    value={value}
-                    onChange={(event, newValue) => {
-                      setValue(newValue);
-                    }}
-                  />
-                </Box>
-                <p class="card-text">
-                  <small class="text-muted">Last updated 3 mins ago</small>
-                </p>
-                <a href="#" class="btn btn-primary">
-                  Go somewhere
-                </a>
-              </div>
-            </div>
-            <div class="card">
-              <img src="..." class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  This card has supporting text below as a natural lead-in to
-                  additional content.
-                </p>
-                <Box
-                  sx={{
-                    "& > legend": { mt: 2 },
-                  }}
-                >
-                  <Rating
-                    name="simple-controlled"
-                    value={value}
-                    onChange={(event, newValue) => {
-                      setValue(newValue);
-                    }}
-                  />
-                </Box>
-                <p class="card-text">
-                  <small class="text-muted">Last updated 3 mins ago</small>
-                </p>
-                <a href="#" class="btn btn-primary">
-                  Go somewhere
-                </a>
-              </div>
-            </div>
-            <div class="card">
-              <img src="..." class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This card has even longer
-                  content than the first to show that equal height action.
-                </p>
-                <Box
-                  sx={{
-                    "& > legend": { mt: 2 },
-                  }}
-                >
-                  <Rating
-                    name="simple-controlled"
-                    value={value}
-                    onChange={(event, newValue) => {
-                      setValue(newValue);
-                    }}
-                  />
-                </Box>
-                <p class="card-text">
-                  <small class="text-muted">Last updated 3 mins ago</small>
-                </p>
-                <a href="#" class="btn btn-primary">
-                  Go somewhere
-                </a>
-              </div>
-            </div>
+          <div class="card">
+                        <Image cloudName="dsxghrclx" publicId={val.image} />
+                        <div class="card-body">
+                          <h5 class="card-title">{val.name}</h5>
+                          <p class="card-text">{val.description}</p>
+                          <p class="card-text">{t("category")}: {val.category}</p>
+                          <p class="card-text">
+                            <small class="text-muted">
+                              {t("uploadedby")}:{" "}
+                              <a
+                                className="uploadername"
+                                onClick={() => visitProfile(val.uploadedby)}
+                              >
+                                {val.uploadedby}
+                              </a>
+                            </small>
+                          </p>
+                          <a
+                            class="btn btn-primary"
+                            onClick={() => fullRecipe(val.id)}
+                          >
+                            {t("seefulldescription")}
+                          </a>
+                        </div>
+                      </div>
           </div>
         </div>
-      </div>
-    </>
+       : null}
+          </>
+        )
+      })}
+    </div>
   );
 }
 
