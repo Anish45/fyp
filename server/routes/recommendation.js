@@ -10,8 +10,13 @@ const db = mysql.createConnection({
   database: "fyp",
 });
 
-router.post("/", (req, res) => {
-
+router.get("/recommended", (req, res) => {
+    db.query("SELECT * FROM recipes", (err, result) => {
+        if(err){
+            console.log(err)
+        }
+        res.send(result);
+    });
 })
 
 router.get("/:title/:rating", (req, res) => {

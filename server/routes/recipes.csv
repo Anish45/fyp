@@ -1,0 +1,84 @@
+recipeId,title,Category
+1,Dal Bhat,Nepali
+2,Momo,Nepali
+3,Sel Roti,Nepali
+4,Samosa,Nepali
+5,Yomari,Nepali
+6,Dhindho,Nepali
+7,Gundruk,Nepali
+8,Juju Dhau,Nepali
+9,Chatamari,Nepali
+10,Thukpa,Nepali
+11,Samay Baji,Nepali
+12,Cholia,Nepali
+13,Tongba,Nepali
+14,Chocolate-chip cookies,American
+15,Blueberry cobbler,American
+16,Delmonico's steak,American
+17,Chicago-style pizza,American
+18, Nachos,American
+19,Philly cheese steak,American
+20,Hot dogs,American
+21,Reuben sandwich,American
+22, Cheeseburger,American
+23,Green chile stew,American
+24,Peanut butter sandwich,American
+25,Chicken fried steak,American
+26,Paella Valenciana,Spanish
+27, Patatas bravas,Spanish
+28, Gazpacho,Spanish
+29,Pimientos de Padron,Spanish
+30,Fideuà,Spanish
+31,Jamón,Spanish
+32,Tortilla,Spanish
+33,Churros,Spanish
+34,Croquetas,Spanish
+35,Albondigas,Spanish
+36,Migas,Spanish
+37,Bacalao,Spanish
+38,Fabada,Spanish
+39, Leche frita,Spanish
+40,Risotto Alla Milanese,Italian
+41,Polenta,Italian
+42,Lasagna,Italian
+43,Ravioli,Italian
+44,Osso buco,Italian
+45,Arancini,Italian
+46,Ribollita,Italian
+47,Spaghetti Alla Carbonara,Italian
+48,Neapolitan pizza,Italian
+49,Caprese salad,Italian
+50,Gnocchi,Italian
+51,Swordfish,Italian
+52,Parmigiana,Italian
+53,Tiramisu,Italian
+54,Steak frites,French
+55, Chicken confit,French
+56, French onion soup,French
+57, Bouillabaisse,French
+58, Salmon en papillote,French
+59,Quiche Lorraine,French
+60,Croque monsieur,French
+61,Boeuf bourguignon,French
+62,Cassoulet,French
+63, Lamb shank navarin,French
+64,Hazelnut dacquoise,French
+65, Frangipane tart,French
+66, Tarte tatin,French
+67,Souffle,French
+68,Paris-brest,French
+69,Aloo gobi,Indian
+70,Butter chicken,Indian
+71,Chana masala,Indian
+72,Palak paneer,Indian
+73,Chicken tikka masala,Indian
+74,"Doughy, butter-brushed naan",Indian
+75,Crisp papadum,Indian
+76,Fish curry,Indian
+77,Lamb vindaloo,Indian
+78,Dal makhani,Indian
+79,Pakora,Indian
+80,Kofta,Indian
+81,Korma,Indian
+82,Biryani,Indian
+83,Kebab,Indian

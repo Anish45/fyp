@@ -4,8 +4,8 @@ import pandas as pd;
 
 
 ratings = pd.read_csv('C:/Users/Anish/Desktop/fyp/server/routes/ratings.csv')
-movies = pd.read_csv('C:/Users/Anish/Desktop/fyp/server/routes/movies.csv')
-ratings = pd.merge(movies,ratings)
+recipes = pd.read_csv('C:/Users/Anish/Desktop/fyp/server/routes/recipes.csv')
+ratings = pd.merge(recipes,ratings)
 ratings.head()
 
 #pivot table the merged dataframe where index is usedid and columns is title and value is rating
@@ -22,9 +22,6 @@ similarity.head(10)
 def get_similar(title,rating):
     similarity_value = similarity[title]
     return similarity_value
-
-#name = "Amazing Spider-Man, The (2012)"
-#rating = 5
 
 
 #creating a user and storing the movies they have rated previously and making recommendations
