@@ -15,6 +15,8 @@ function VisitProfile() {
   const [followers, setFollowers] = useState(0);
   const [followingother, setFollowingother] = useState(0);
   const { t } = useTranslation(["common"]);
+  const [length, setLength] = useState();
+  const [l, setL] = useState();
 
   useEffect(() => {
     Axios.post("http://localhost:5000/checkfollow", {
@@ -43,12 +45,14 @@ function VisitProfile() {
     ).then((response) => {
       setYourUploads(response.data);
       setTotalpost(response.data.length);
+      setL(response.data.length);
     });
 
     Axios.get(
       `http://localhost:5000/userdetails/${localStorage.getItem("visitorname")}`
     ).then((response) => {
       setDetails(response.data);
+      setLength(response.data.length)
     });
   }, []);
 
@@ -76,9 +80,10 @@ function VisitProfile() {
 
   return (
     <>
+    {length != 0 ? 
       <div className="container">
         <h1>{t("profile")}</h1>
-        <div class="row pt-3">
+        <div class="row pt-3">           
           {details.map((val, key) => {
             if (val.username !== localStorage.getItem("username")) {
               return (
@@ -106,7 +111,7 @@ function VisitProfile() {
                     </p>
                   </div>
                   <div className="col-lg-3 pt-3">
-                    {following ? (
+                    {following ? 
                       <a href="#"
                         id="follow"
                         class="btn btn-primary"
@@ -114,7 +119,7 @@ function VisitProfile() {
                       >
                         {t("follow")}
                       </a>
-                    ) : (
+                   : 
                       <a
                         id="unfollow"
                         class="btn btn-primary"
@@ -122,7 +127,7 @@ function VisitProfile() {
                       >
                         {t("unfollow")}
                       </a>
-                    )}
+                    }
                   </div>
                 </>
               );
@@ -154,13 +159,14 @@ function VisitProfile() {
                 </>
               );
             }
-          })}
-        </div>
+          })}  
+        </div> 
         <div className="row pt-3">
           <div className="col-12 d-flex justify-content-center">
             <h3>{t("uploads")}</h3>
           </div>
         </div>
+        {l != 0 ?
         <div className="row pt-3">
           {yourUploads.map((val, key) => {
             return (
@@ -187,7 +193,9 @@ function VisitProfile() {
             );
           })}
         </div>
+        : <h3 className="pt-3">No any Uploads</h3>}
       </div>
+     : <h1>User Not Found</h1>}
     </>
   );
 }
