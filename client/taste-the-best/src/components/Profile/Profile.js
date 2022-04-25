@@ -4,6 +4,8 @@ import "../Profile/Profile.css";
 import { Image } from "cloudinary-react";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 function Profile() {
@@ -67,6 +69,15 @@ function Profile() {
 
   const deleteRecipe = (id) => {
     Axios.delete(`http://localhost:5000/delete/${id}`);
+    toast.success("Successfully Deleted Recipe", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   const uploadPicture = () => {
@@ -91,6 +102,17 @@ function Profile() {
 
   return (
     <>
+     <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="container">
         <h1>{t("profile")}</h1>
         <div class="row pt-3">

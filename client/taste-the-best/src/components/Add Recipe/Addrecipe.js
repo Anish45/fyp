@@ -112,7 +112,7 @@ function Addrecipe() {
             instructions: instructions,
             uploadedby: uploadedby,
           }).then(() => {
-            toast.success("Sucessfuly Uploaded", {
+            toast.success("Sucessfuly Uploaded Recipe", {
               position: "top-right",
               autoClose: 2000,
               hideProgressBar: false,

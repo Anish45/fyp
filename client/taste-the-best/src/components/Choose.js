@@ -39,7 +39,7 @@ function Choose(props) {
       history.push("/home");
     } else {
       console.log("fail");
-      toast.warn("Choose at least 3 cuisines", {
+      toast.warn("Choose at least 3 category of cuisines", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -66,7 +66,7 @@ function Choose(props) {
       <div className="container">
         <div className="row pt-5">
           <div className="col-12 d-flex justify-content-center">
-            <h3>Choose Your favourite Cuisines</h3>
+            <h3>Choose Your Favourite Category of Cuisines</h3>
           </div>
         </div>
         <div className="row pt-3">

@@ -177,6 +177,7 @@ function EditRecipe() {
         pauseOnHover
       />
       <div className="container">
+        <h1 className="pt-3">Edit Recipe</h1>
         {recipedata.map((val) => {
           return (
             <form>

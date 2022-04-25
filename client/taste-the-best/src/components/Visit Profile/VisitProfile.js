@@ -112,7 +112,7 @@ function VisitProfile() {
                   </div>
                   <div className="col-lg-3 pt-3">
                     {following ? 
-                      <a href="#"
+                      <a
                         id="follow"
                         class="btn btn-primary"
                         onClick={() => follow(val.username)}
