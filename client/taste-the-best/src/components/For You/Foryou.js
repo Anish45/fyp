@@ -54,7 +54,7 @@ function Foryou({ search }) {
           })
           .map((val) => {
             return (
-              <>
+            <>               
             {cuisine.includes(val.category) ? 
                  <div className="col-lg-4 col-12 pb-5">
                   <div class="card-deck">
@@ -85,7 +85,7 @@ function Foryou({ search }) {
                       </div>
                     </div>
                   </div>
-                </div> : null}
+                </div>: null} 
               </>
             );
           })}

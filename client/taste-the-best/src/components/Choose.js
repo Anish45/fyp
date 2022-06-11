@@ -20,13 +20,11 @@ function Choose(props) {
   for (const checkbox of checkboxes) {
     if (checkbox.checked === true) {
       if (!cuisine.includes(checkbox.value)) {
-        cuisine.push(checkbox.value);
-        console.log(cuisine);
+        cuisine.push(checkbox.value);       
       }
     } else if (checkbox.checked === false) {
       if (cuisine.includes(checkbox.value)) {
-        cuisine.pop(checkbox.value);
-        console.log(cuisine);
+        cuisine.pop(checkbox.value);     
       }
     }
   }
@@ -34,11 +32,9 @@ function Choose(props) {
     if (cuisine.length >= 3) {
       console.log("success");
       setCuisine(cuisine);
-      console.log(cuisine);
       localStorage.setItem("cuisine", JSON.stringify(cuisine));
       history.push("/home");
     } else {
-      console.log("fail");
       toast.warn("Choose at least 3 category of cuisines", {
         position: "top-right",
         autoClose: 2000,

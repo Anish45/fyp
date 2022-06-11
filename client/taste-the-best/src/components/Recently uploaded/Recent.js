@@ -18,7 +18,7 @@ function Recent({ search }) {
       setFeed(response.data);
       setLength(response.data.length);
     });
-  }, []);
+  });
 
   const visitProfile = (uploadedby) => {
     localStorage.setItem("visitorname", uploadedby);
@@ -48,7 +48,7 @@ function Recent({ search }) {
 
   return (
     <>
-      {length !== 0 ? (
+      {feed.length != 0 ? (
         <div className="row">
           {feed
             .filter((val) => {

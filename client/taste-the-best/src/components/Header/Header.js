@@ -55,6 +55,11 @@ const Header = () => {
     history.push("/visitprofile");
   };
 
+  const logout = () => {
+    localStorage.removeItem("username");
+    history.push("/");
+  }
+
   // localStorage.setItem("visitorname", user);
   // history.push("/visitprofile");
   return (
@@ -122,7 +127,7 @@ const Header = () => {
                 <a href="/profile">{t("profile")}</a>
               </li>
               <li>
-                <a href="/">{t("logout")}</a>
+                <a href="" onClick={logout}>{t("logout")}</a>
               </li>
             </ul>
           </div>

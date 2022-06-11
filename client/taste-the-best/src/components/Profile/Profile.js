@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaWindows } from "react-icons/fa";
 
 
 function Profile() {
@@ -45,7 +46,7 @@ function Profile() {
     ).then((response) => {
       setDetails(response.data);
     });
-  }, []);
+  }, [yourUploads]);
 
   const fullRecipe = (id) => {
     localStorage.setItem("recipeid", id);
@@ -98,6 +99,7 @@ function Profile() {
       );
     });
     document.getElementById("picturename").value = null;
+    toast.success("succefully uploaded profile!!!")
   };
 
   return (
@@ -173,7 +175,7 @@ function Profile() {
                       <div class="card-body">
                         <h5 class="card-title">{val.name}</h5>
                         <p class="card-text">{val.description}</p>
-                        <h5>Rating</h5>
+                        <h5>{t("category")}: {val.category}</h5>
                         <a href=""
                           class="btn btn-primary"
                           onClick={() => fullRecipe(val.id)}

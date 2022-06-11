@@ -8,9 +8,9 @@ recipes = pd.read_csv('C:/Users/Anish/Desktop/fyp/server/routes/recipes.csv')
 ratings = pd.merge(recipes,ratings)
 ratings.head()
 
-#pivot table the merged dataframe where index is usedid and columns is title and value is rating
+#pivot table the merged dataframe where index is userid and columns is title and value is rating
 ratings = ratings.pivot_table(index=['userId'],columns=['title'],values='rating')
-#dropping all the movies which is rated by less than 10 users and fill nan values with 0
+#dropping all the recipes which is rated by less than 10 users and fill nan values with 0
 ratings = ratings.dropna(thresh=10, axis=1).fillna(0,axis=1)
 ratings.head()
 
@@ -24,7 +24,7 @@ def get_similar(title,rating):
     return similarity_value
 
 
-#creating a user and storing the movies they have rated previously and making recommendations
+#creating a user and storing the recipes they have rated previously and making recommendations
 user = [(sys.argv[1], sys.argv[2])]
 similar_movies = pd.DataFrame()
 for title,rating in user:

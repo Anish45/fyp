@@ -12,7 +12,7 @@ function Login() {
 
   const login = () => {
     if (username === "") {
-      toast.warn("Enter your email", {
+      toast.warn("Enter your username", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -44,8 +44,8 @@ function Login() {
               draggable: true,
               progress: undefined,
             });
-            history.push("/home");
             localStorage.setItem("username", username);
+            history.push("/home");
           }
         })
         .catch((err) => {

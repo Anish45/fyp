@@ -31,7 +31,7 @@ const Routes = () => {
             component={() => <RecipeDescription />}
           />
           <Route exact path="/edit" component={() => <EditRecipe />} />
-          <Redirect to="/" />
+           <Redirect to="/" />
         </Switch>
       </Route>
     </Router>
